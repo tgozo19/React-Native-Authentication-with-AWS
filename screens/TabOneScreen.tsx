@@ -1,16 +1,22 @@
 import * as React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Pressable, Text, View } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
-import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
+import { Auth } from 'aws-amplify';
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
+
+  const logOut = () => {
+    Auth.signOut();
+  }
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
+      <Text style={styles.title}>Hello I am Takudzwa. I created this simple authentication application using React Native and for the backend I used AWS</Text>
+      <Pressable onPress={logOut} style={{backgroundColor: 'red', height: 35, width: 100, borderRadius: 10, justifyContent: 'center', alignItems: 'center', marginVertical: 15}}>
+        <Text style={{color: 'white'}}>Logout</Text>
+      </Pressable>
     </View>
   );
 }
